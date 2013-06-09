@@ -2,7 +2,8 @@
 Contributors: madebyguerrilla
 Tags: author box, author info, author
 Requires at least: 3.0
-Tested up to: 3.4.2
+Tested up to: 3.5.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,3 +32,14 @@ You can copy/paste the below css codes into your themes CSS file and adjust them
 
 1. Upload 'guerrilla-author-box.php' to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
+
+== Changelog ==
+
+= 1.1 =
+* Automatically remove the aim/yim/jabber profile options
+* Automatically add twitter/facebook/google+/linkedin options
+
+== Upgrade Notice ==
+
+= 1.1 =
+New version adds twitter/facebook/google+/linkedin profile options and removes some seldom used options

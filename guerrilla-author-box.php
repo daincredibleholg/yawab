@@ -3,7 +3,7 @@
 Plugin Name: Guerrilla's Author Box
 Plugin URI: http://madebyguerrilla.com
 Description: This is a plugin that adds an author box to the end of your WordPress posts.
-Version: 1.0
+Version: 1.1
 Author: Mike Smith
 Author URI: http://www.madebyguerrilla.com
 */
@@ -24,6 +24,23 @@ Author URI: http://www.madebyguerrilla.com
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/* This code adds new profile fields to the user profile editor */
+function modify_contact_methods($profile_fields) {
+
+	// Add new fields
+	$profile_fields['twitter'] = 'Twitter Username';
+	$profile_fields['facebook'] = 'Facebook URL';
+	$profile_fields['gplus'] = 'Google+ URL';
+	$profile_fields['skype'] = 'Skype Username';
+
+	// Remove old fields
+	unset($profile_fields['aim']);
+	unset($profile_fields['yim']);
+	unset($profile_fields['jabber']);
+
+	return $profile_fields;
+}
+add_filter('user_contactmethods', 'modify_contact_methods');
 
 /* This code adds the author box to the single post page */
 add_filter ('the_content', 'guerrilla_add_post_content', 0);
@@ -37,7 +54,8 @@ function guerrilla_add_post_content($content) {
 			.guerrillatext h4 { margin: 0 0 10px 0; }
 		</style>
 		<div class="guerrillawrap"><div class="guerrillagravatar">'. get_avatar( get_the_author_email(), '80' ) .'</div>
-	<div class="guerrillatext"><h4>Author: <span>'. get_the_author_link('display_name',get_query_var('author') ) .'</span></h4>'. get_the_author_meta('description',get_query_var('author') ) .'</div>
+		<div class="guerrillatext"><h4>Author: <span>'. get_the_author_link('display_name',get_query_var('author') ) .'</span></h4>'. get_the_author_meta('description',get_query_var('author') ) .'</div>
+		<div class="guerrillasocial"><a href="'. $twitterHandle = get_the_author_meta('twitter');  .'" target="_blank">Twitter</a> | <a href="'. $facebookHandle = get_the_author_meta('facebook');  .'">Faceboook</a> | <a href="'. $gplusHandle = get_the_author_meta('gplus');  .'">Google+</a> | <a href="'. $skypeHandle = get_the_author_meta('skype');  .'">Skype</a>
 </div>';
 	}
 	return $content;

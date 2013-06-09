@@ -13,6 +13,8 @@ This is a plugin that adds an author box to the end of your posts, showing off t
 
 This is a plugin that adds an author box to the end of your posts, showing off the authors name, description, website link and gravatar powered avatar.
 
+As of version 1.2 the following input boxes were removed: aim/yim/jabber, and the following input boxes were added: twitter/facebook/google+/linkedin
+
 == Frequently Asked Questions ==
 
 = Will there ever be more options added? =

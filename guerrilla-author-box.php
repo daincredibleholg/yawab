@@ -51,11 +51,12 @@ function guerrilla_add_post_content($content) {
 			.guerrillawrap { float: left; width: 96%; padding: 2%; background: #f8f8f8; }
 			.guerrillagravatar { float: left; margin: 0 10px 0 0; }
 			.guerrillatext { }
-			.guerrillatext h4 { margin: 0 0 10px 0; }
+			.guerrillatext h4 { margin: 0 0 0 0; }
+			.guerrillatext p { margin: 5px 0 12px 0; }
 		</style>
 		<div class="guerrillawrap"><div class="guerrillagravatar">'. get_avatar( get_the_author_email(), '80' ) .'</div>
 		<div class="guerrillatext"><h4>Author: <span>'. get_the_author_link('display_name',get_query_var('author') ) .'</span></h4>'. get_the_author_meta('description',get_query_var('author') ) .'</div>
-		<div class="guerrillasocial"><a href="'. $twitterHandle = get_the_author_meta('twitter',get_query_var('author') );  .'" target="_blank">Twitter</a> | <a href="'. $facebookHandle = get_the_author_meta('facebook',get_query_var('author') );  .'">Faceboook</a> | <a href="'. $gplusHandle = get_the_author_meta('gplus',get_query_var('author') );  .'">Google+</a> | <a href="'. $skypeHandle = get_the_author_meta('linkedin',get_query_var('author') );  .'">Linkedin</a></div>
+		<div class="guerrillasocial"><a href="'. get_the_author_meta('twitter',get_query_var('author') )  .'" target="_blank">Twitter</a> | <a href="'. get_the_author_meta('facebook',get_query_var('author') )  .'" target="_blank">Faceboook</a> | <a href="'. get_the_author_meta('gplus',get_query_var('author') )  .'" target="_blank">Google+</a> | <a href="'. get_the_author_meta('linkedin',get_query_var('author') )  .'" target="_blank">Linkedin</a></div>
 </div>';
 	}
 	return $content;

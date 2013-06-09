@@ -19,7 +19,7 @@ As of version 1.2 the following input boxes were removed: aim/yim/jabber, and th
 
 = Will there ever be more options added? =
 
-Yes, I do have plans on adding more options for this plugin. For instance, I plan on adding a page in the WordPress admin panel for you to be able to edit the CSS so the author box can be styled to fit with your theme design. <strike>I also would like to remove some of the default user info (ie: AIM name, etc) and replace those with Twitter, Facebook and Google+</strike> as of version 1.2 this has been done.
+Yes, I do have plans on adding more options for this plugin. For instance, I plan on adding a page in the WordPress admin panel for you to be able to edit the CSS so the author box can be styled to fit with your theme design.
 
 = What are the default CSS codes? =
 

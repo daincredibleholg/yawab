@@ -3,7 +3,7 @@
 Plugin Name: Guerrilla's Author Box
 Plugin URI: http://madebyguerrilla.com
 Description: This is a plugin that adds an author box to the end of your WordPress posts.
-Version: 1.1
+Version: 1.2
 Author: Mike Smith
 Author URI: http://www.madebyguerrilla.com
 */
@@ -28,10 +28,10 @@ Author URI: http://www.madebyguerrilla.com
 function modify_contact_methods($profile_fields) {
 
 	// Add new fields
-	$profile_fields['twitter'] = 'Twitter Username';
+	$profile_fields['twitter'] = 'Twitter URL';
 	$profile_fields['facebook'] = 'Facebook URL';
 	$profile_fields['gplus'] = 'Google+ URL';
-	$profile_fields['skype'] = 'Skype Username';
+	$profile_fields['linkedin'] = 'Linkedin URL';
 
 	// Remove old fields
 	unset($profile_fields['aim']);
@@ -55,7 +55,7 @@ function guerrilla_add_post_content($content) {
 		</style>
 		<div class="guerrillawrap"><div class="guerrillagravatar">'. get_avatar( get_the_author_email(), '80' ) .'</div>
 		<div class="guerrillatext"><h4>Author: <span>'. get_the_author_link('display_name',get_query_var('author') ) .'</span></h4>'. get_the_author_meta('description',get_query_var('author') ) .'</div>
-		<div class="guerrillasocial"><a href="'. $twitterHandle = get_the_author_meta('twitter');  .'" target="_blank">Twitter</a> | <a href="'. $facebookHandle = get_the_author_meta('facebook');  .'">Faceboook</a> | <a href="'. $gplusHandle = get_the_author_meta('gplus');  .'">Google+</a> | <a href="'. $skypeHandle = get_the_author_meta('skype');  .'">Skype</a>
+		<div class="guerrillasocial"><a href="'. $twitterHandle = get_the_author_meta('twitter',get_query_var('author') );  .'" target="_blank">Twitter</a> | <a href="'. $facebookHandle = get_the_author_meta('facebook',get_query_var('author') );  .'">Faceboook</a> | <a href="'. $gplusHandle = get_the_author_meta('gplus',get_query_var('author') );  .'">Google+</a> | <a href="'. $skypeHandle = get_the_author_meta('linkedin',get_query_var('author') );  .'">Linkedin</a></div>
 </div>';
 	}
 	return $content;

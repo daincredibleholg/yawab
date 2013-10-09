@@ -1,0 +1,39 @@
+/*
+	These are the custom css styles for the Guerrilla Author Box plugin.
+	If you'd like to customize these css codes, I would recommend copying
+	the codes below into your theme's stylesheet and editing the codes
+	as you see fit. Need help? email: hi@madebyguerrilla.com
+*/
+
+.guerrillawrap {
+	background: #f8f8f8;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	box-sizing:border-box;
+	border: 1px solid #dadada;
+	float: left;
+	padding: 2%;
+	width: 100%;
+}
+
+.guerrillagravatar {
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+.guerrillatext {
+}
+
+.guerrillatext h4 {
+	margin: 0 0 0 0;
+}
+
+.guerrillatext p {
+	margin: 5px 0 12px 0;
+}
+
+.guerrillasocial {
+	float: left;
+	width: 100%;
+}

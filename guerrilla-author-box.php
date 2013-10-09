@@ -3,7 +3,7 @@
 Plugin Name: Guerrilla's Author Box
 Plugin URI: http://madebyguerrilla.com
 Description: This is a plugin that adds an author box to the end of your WordPress posts.
-Version: 1.2
+Version: 1.3
 Author: Mike Smith
 Author URI: http://www.madebyguerrilla.com
 */
@@ -32,6 +32,8 @@ function modify_contact_methods($profile_fields) {
 	$profile_fields['facebook'] = 'Facebook URL';
 	$profile_fields['gplus'] = 'Google+ URL';
 	$profile_fields['linkedin'] = 'Linkedin URL';
+	$profile_fields['dribbble'] = 'Dribbble URL';
+	$profile_fields['github'] = 'Github URL';
 
 	// Remove old fields
 	unset($profile_fields['aim']);
@@ -42,22 +44,49 @@ function modify_contact_methods($profile_fields) {
 }
 add_filter('user_contactmethods', 'modify_contact_methods');
 
-/* This code adds the author box to the single post page */
+/* This code adds the author box stylesheet to your website */
+function guerrilla_author_box_style()
+{
+	// Register the style like this for a plugin:
+	wp_register_style( 'guerrilla-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20131008', 'all' );
+	// For either a plugin or a theme, you can then enqueue the style:
+	wp_enqueue_style( 'guerrilla-author-box' );
+}
+add_action( 'wp_enqueue_scripts', 'guerrilla_author_box_style' );
+
+
+/* This code adds the author box to the end of your single posts */
 add_filter ('the_content', 'guerrilla_add_post_content', 0);
 function guerrilla_add_post_content($content) {
 	if (is_single()) { 
 		$content .= '
-		<style>
-			.guerrillawrap { float: left; width: 96%; padding: 2%; background: #f8f8f8; }
-			.guerrillagravatar { float: left; margin: 0 10px 0 0; }
-			.guerrillatext { }
-			.guerrillatext h4 { margin: 0 0 0 0; }
-			.guerrillatext p { margin: 5px 0 12px 0; }
-		</style>
-		<div class="guerrillawrap"><div class="guerrillagravatar">'. get_avatar( get_the_author_email(), '80' ) .'</div>
-		<div class="guerrillatext"><h4>Author: <span>'. get_the_author_link('display_name',get_query_var('author') ) .'</span></h4>'. get_the_author_meta('description',get_query_var('author') ) .'</div>
-		<div class="guerrillasocial"><a href="'. get_the_author_meta('twitter',get_query_var('author') )  .'" target="_blank">Twitter</a> | <a href="'. get_the_author_meta('facebook',get_query_var('author') )  .'" target="_blank">Faceboook</a> | <a href="'. get_the_author_meta('gplus',get_query_var('author') )  .'" target="_blank">Google+</a> | <a href="'. get_the_author_meta('linkedin',get_query_var('author') )  .'" target="_blank">Linkedin</a></div>
-</div>';
+			<div class="guerrillawrap">
+			<div class="guerrillagravatar">
+				'. get_avatar( get_the_author_email(), '80' ) .'
+			</div>
+			<div class="guerrillatext">
+				<h4>Author: <span>'. get_the_author_link('display_name',get_query_var('author') ) .'</span></h4>'. get_the_author_meta('description',get_query_var('author') ) .'
+			</div>
+		';
+		$content .= '
+			<div class="guerrillasocial">
+			';
+			if( get_the_author_meta('twitter',get_query_var('author') ) )
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'twitter' ) ) . '"> target="_blank"Twitter</a> | ';
+			if( get_the_author_meta('facebook',get_query_var('author') ) )
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'facebook' ) ) . '" target="_blank">Facebook</a> | ';
+			if( get_the_author_meta('gplus',get_query_var('author') ) )
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'gplus' ) ) . '" target="_blank">Google+</a> | ';
+			if( get_the_author_meta('linkedin',get_query_var('author') ) )
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'linkedin' ) ) . '" target="_blank">Linkedin</a> | ';
+			if( get_the_author_meta('dribbble',get_query_var('author') ) )
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'dribbble' ) ) . '" target="_blank">Dribbble</a> | ';
+			if( get_the_author_meta('github',get_query_var('author') ) )
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'github' ) ) . '" target="_blank">Github</a>';
+		$content .= '
+			</div>
+			</div>
+		';
 	}
 	return $content;
 }

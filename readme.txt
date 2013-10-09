@@ -3,7 +3,7 @@ Contributors: madebyguerrilla
 Tags: author box, author info, author
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,9 @@ You can copy/paste the below css codes into your themes CSS file and adjust them
 * Automatically add dribbble/github options
 * Fixed the way social links were displayed within the author box (no url added in the backend, no link shows up on the live site)
 * Fixed how the css styles are used to style the author box (previously added to html, now in their own style.css file)
+
+= 1.4 =
+* Minor CSS fixes
 
 == Upgrade Notice ==
 

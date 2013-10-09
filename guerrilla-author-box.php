@@ -3,7 +3,7 @@
 Plugin Name: Guerrilla's Author Box
 Plugin URI: http://madebyguerrilla.com
 Description: This is a plugin that adds an author box to the end of your WordPress posts.
-Version: 1.3
+Version: 1.4
 Author: Mike Smith
 Author URI: http://www.madebyguerrilla.com
 */

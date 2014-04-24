@@ -3,12 +3,12 @@
 Plugin Name: Guerrilla's Author Box
 Plugin URI: http://madebyguerrilla.com
 Description: This is a plugin that adds an author box to the end of your WordPress posts.
-Version: 1.6
+Version: 1.7
 Author: Mike Smith
 Author URI: http://www.madebyguerrilla.com
 */
 
-/*  Copyright 2012  Mike Smith (email : hi@madebyguerrilla.com)
+/*  Copyright 2012-2014  Mike Smith (email : hi@madebyguerrilla.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -48,12 +48,17 @@ add_filter('user_contactmethods', 'modify_contact_methods');
 function guerrilla_author_box_style()
 {
 	// Register the style like this for a plugin:
-	wp_register_style( 'guerrilla-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20131008', 'all' );
+	wp_register_style( 'guerrilla-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20140424', 'all' );
 	// For either a plugin or a theme, you can then enqueue the style:
 	wp_enqueue_style( 'guerrilla-author-box' );
 }
 add_action( 'wp_enqueue_scripts', 'guerrilla_author_box_style' );
 
+
+/* This code adds the fontawesome css file to the footer of your website */
+function fontawesome_authorbox() { ?>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+<?php } add_action( 'wp_footer', 'fontawesome_authorbox' );
 
 /* This code adds the author box to the end of your single posts */
 add_filter ('the_content', 'guerrilla_add_post_content', 0);
@@ -72,17 +77,17 @@ function guerrilla_add_post_content($content) {
 			<div class="guerrillasocial">
 			';
 			if( get_the_author_meta('twitter',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'twitter' ) ) . '" target="_blank">Twitter</a> | ';
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'twitter' ) ) . '" target="_blank"><i class="fa fa-twitter"></i> Twitter</a> ';
 			if( get_the_author_meta('facebook',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'facebook' ) ) . '" target="_blank">Facebook</a> | ';
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'facebook' ) ) . '" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> ';
 			if( get_the_author_meta('gplus',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'gplus' ) ) . '" target="_blank">Google+</a> | ';
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'gplus' ) ) . '" target="_blank"><i class="fa fa-google-plus"></i> Google+</a> ';
 			if( get_the_author_meta('linkedin',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'linkedin' ) ) . '" target="_blank">Linkedin</a> | ';
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'linkedin' ) ) . '" target="_blank"><i class="fa fa-linkedin"></i> Linkedin</a> ';
 			if( get_the_author_meta('dribbble',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'dribbble' ) ) . '" target="_blank">Dribbble</a> | ';
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'dribbble' ) ) . '" target="_blank"><i class="fa fa-dribbble"></i> Dribbble</a> ';
 			if( get_the_author_meta('github',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'github' ) ) . '" target="_blank">Github</a>';
+				$content .= '<a href="' . esc_url( get_the_author_meta( 'github' ) ) . '" target="_blank"><i class="fa fa-github"></i> Github</a>';
 		$content .= '
 			</div>
 			</div>

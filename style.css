@@ -20,13 +20,19 @@
 .guerrillagravatar {
 	float: left;
 	margin: 0 10px 0 0;
+	width: 10%;
 }
 
 .guerrillatext {
+	float: left;
+	width: 84%;
 }
 
 .guerrillatext h4 {
+	font-size: 20px;
+	line-height: 20px;
 	margin: 0 0 0 0;
+	padding: 0;
 }
 
 .guerrillatext p {
@@ -36,4 +42,9 @@
 .guerrillasocial {
 	float: left;
 	width: 100%;
+}
+
+.guerrillasocial a {
+	border: 0;
+	margin-right: 10px;
 }

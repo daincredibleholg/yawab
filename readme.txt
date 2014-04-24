@@ -2,8 +2,8 @@
 Contributors: madebyguerrilla
 Tags: author box, author info, author
 Requires at least: 3.0
-Tested up to: 3.6.1
-Stable tag: 1.6
+Tested up to: 3.9
+Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,20 @@ This is a plugin that adds an author box to the end of your posts, showing off t
 
 This is a plugin that adds an author box to the end of your posts, showing off the authors name, description, website link and gravatar powered avatar.
 
-As of version 1.3 the following input boxes were removed: aim/yim/jabber, and the following input boxes were added: twitter/facebook/google+/linkedin/dribbble/github
+As of version 1.3 the following input boxes were removed:
+
+* aim
+* yim
+* jabber
+
+The following input boxes were added:
+
+* twitter
+* facebook
+* google+
+* linkedin
+* dribbble
+* github
 
 == Frequently Asked Questions ==
 
@@ -42,13 +55,19 @@ You can copy/paste the below css codes into your themes CSS file and adjust them
 	.guerrillagravatar {
 		float: left;
 		margin: 0 10px 0 0;
+		width: 10%;
 	}
 
 	.guerrillatext {
+		float: left;
+		width: 84%;
 	}
 
 	.guerrillatext h4 {
+		font-size: 20px;
+		line-height: 20px;
 		margin: 0 0 0 0;
+		padding: 0;
 	}
 
 	.guerrillatext p {
@@ -60,10 +79,19 @@ You can copy/paste the below css codes into your themes CSS file and adjust them
 		width: 100%;
 	}
 
+	.guerrillasocial a {
+		border: 0;
+		margin-right: 10px;
+	}
+
 == Installation ==
 
 1. Upload 'guerrilla-author-box.php' to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
+
+== Screenshots ==
+
+1. This is how the author box displays in the Clarity WordPress theme
 
 == Changelog ==
 
@@ -85,6 +113,13 @@ You can copy/paste the below css codes into your themes CSS file and adjust them
 = 1.5 =
 * various html fixes
 
+= 1.6 =
+* various html fixes
+
+= 1.7 =
+* added fontawesome support and icons to social profile links
+* cleaned up css and adjusted the styles of the links/text
+
 == Upgrade Notice ==
 
 = 1.1 =
@@ -92,3 +127,5 @@ New version adds twitter/facebook/google+/linkedin profile options and removes s
 
 = 1.5 =
 New version adds dribbble/github profile options and also fixes various css and html issues
+
+= 1.7 =

@@ -8,7 +8,7 @@ Author: Mike Smith
 Author URI: http://www.madebyguerrilla.com
 */
 
-/*  Copyright 2012-2014  Mike Smith (email : hi@madebyguerrilla.com)
+/*  Copyright 2012-2016  Mike Smith (email : hi@madebyguerrilla.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -48,7 +48,7 @@ add_filter('user_contactmethods', 'modify_contact_methods');
 function guerrilla_author_box_style()
 {
 	// Register the style like this for a plugin:
-	wp_register_style( 'guerrilla-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20140424', 'all' );
+	wp_register_style( 'guerrilla-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20160209', 'all' );
 	// For either a plugin or a theme, you can then enqueue the style:
 	wp_enqueue_style( 'guerrilla-author-box' );
 }
@@ -57,7 +57,7 @@ add_action( 'wp_enqueue_scripts', 'guerrilla_author_box_style' );
 
 /* This code adds the fontawesome css file to the footer of your website */
 function fontawesome_authorbox() { ?>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet" />
 <?php } add_action( 'wp_footer', 'fontawesome_authorbox' );
 
 /* This code adds the author box to the end of your single posts */

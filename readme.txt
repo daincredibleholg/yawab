@@ -2,8 +2,8 @@
 Contributors: madebyguerrilla
 Tags: author box, author info, author
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.7
+Tested up to: 4.4.2
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,7 +46,7 @@ You can copy/paste the below css codes into your themes CSS file and adjust them
 		-moz-box-sizing:border-box;
 		-ms-box-sizing:border-box;
 		box-sizing:border-box;
-		border: 1px solid #dadada;
+		border: 1px solid #d0d0d0;
 		float: left;
 		padding: 2%;
 		width: 100%;
@@ -119,6 +119,10 @@ You can copy/paste the below css codes into your themes CSS file and adjust them
 = 1.7 =
 * added fontawesome support and icons to social profile links
 * cleaned up css and adjusted the styles of the links/text
+
+= 1.8 =
+* Updated various CSS styles
+* Updated fontawesome version
 
 == Upgrade Notice ==
 

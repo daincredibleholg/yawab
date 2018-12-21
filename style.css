@@ -1,11 +1,26 @@
 /*
-	These are the custom css styles for the Guerrilla Author Box plugin.
-	If you'd like to customize these css codes, I would recommend copying
-	the codes below into your theme's stylesheet and editing the codes
-	as you see fit. Need help? email: hi@madebyguerrilla.com
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-.guerrillawrap {
+/*
+	These are the custom css styles for the yawab plugin.
+	If you'd like to customize these css codes, I would recommend copying
+	the codes below into your theme's stylesheet and editing the codes
+	as you see fit.
+*/
+
+.yawabwrap {
 	background: #f8f8f8;
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -17,35 +32,35 @@
 	width: 100%;
 }
 
-.guerrillagravatar {
+.yawabgravatar {
 	float: left;
 	margin: 0 10px 0 0;
 	width: 10%;
 }
 
-.guerrillatext {
+.yawabtext {
 	float: left;
 	width: 84%;
 }
 
-.guerrillatext h4 {
+.yawabtext h4 {
 	font-size: 20px;
 	line-height: 20px;
 	margin: 0 0 0 0;
 	padding: 0;
 }
 
-.guerrillatext p {
+.yawabtext p {
 	margin: 0 0 12px 0;
     padding: 6px 0 0px 0;
 }
 
-.guerrillasocial {
+.yawabsocial {
 	float: left;
 	width: 100%;
 }
 
-.guerrillasocial a {
+.yawabsocial a {
 	border: 0;
 	margin-right: 10px;
 }

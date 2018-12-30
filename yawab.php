@@ -35,6 +35,7 @@ function modify_contact_methods($profile_fields) {
 	$profile_fields['linkedin'] = 'Linkedin URL';
 	$profile_fields['dribbble'] = 'Dribbble URL';
 	$profile_fields['github'] = 'Github URL';
+	$profile_fields['stack-overflow'] = 'StackOverflow URL';
 
 	// Remove old fields
 	unset($profile_fields['aim']);
@@ -50,7 +51,7 @@ add_filter('user_contactmethods', 'modify_contact_methods');
 function yawab_author_box_style()
 {
 	// Register the style like this for a plugin:
-	wp_register_style( 'yawab-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20160209', 'all' );
+	wp_register_style( 'yawab-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20181228', 'all' );
 	// For either a plugin or a theme, you can then enqueue the style:
 	wp_enqueue_style( 'yawab-author-box' );
 }
@@ -67,35 +68,62 @@ add_action( 'wp_footer', 'fontawesome_authorbox' );
 add_filter ('the_content', 'yawab_add_post_content', 0);
 function yawab_add_post_content($content) {
 	if (is_single()) { 
-		$content .= '
-			<div class="yawabwrap">
-			<div class="yawabgravatar">
-				'. get_avatar( get_the_author_email(), '80' ) .'
-			</div>
-			<div class="yawabtext">
-				<h4>Author: <span>'. get_the_author_link('display_name',get_query_var('author') ) .'</span></h4>'. get_the_author_meta('description',get_query_var('author') ) .'
-			</div>
-		';
-		$content .= '
-			<div class="yawabsocial">
-			';
-			if( get_the_author_meta('twitter',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'twitter' ) ) . '" target="_blank"><i class="fab fa-twitter"></i> Twitter</a> ';
-			if( get_the_author_meta('facebook',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'facebook' ) ) . '" target="_blank"><i class="fab fa-facebook"></i> Facebook</a> ';
-			if( get_the_author_meta('instagram',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'instagram' ) ) . '" target="_blank"><i class="fab fa-instagram"></i> Instagram</a> ';
-			if( get_the_author_meta('linkedin',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'linkedin' ) ) . '" target="_blank"><i class="fab fa-linkedin"></i> Linkedin</a> ';
-			if( get_the_author_meta('dribbble',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'dribbble' ) ) . '" target="_blank"><i class="fab fa-dribbble"></i> Dribbble</a> ';
-			if( get_the_author_meta('github',get_query_var('author') ) )
-				$content .= '<a href="' . esc_url( get_the_author_meta( 'github' ) ) . '" target="_blank"><i class="fab fa-github"></i> Github</a>';
-		$content .= '
-			</div>
-			</div>
-		';
+		if (! function_exists('coauthors')) {
+			$content .= author_box(get_the_author_meta('ID'));
+		} else {
+			$co_authors = get_coauthors();
+			foreach ($co_authors as $current_co_author) {
+				$content .= author_box($current_co_author->ID);
+			}
+		}
 	}
 	return $content;
 }
+
+/**
+ * Adds a author box for the author with the ID $author_id to the end of $content
+ * 
+ * @param int $author_id Author's ID
+ */
+function author_box($author_id) {
+	$content .= '
+		<div class="yawabwrap">
+		<div class="yawabgravatar">
+			'. get_avatar( $author_id, '80' ) .'
+		</div>
+		<div class="yawabtext">
+			<h4>Author: <span><a href="'. get_author_posts_url( $author_id ) .'">' . get_the_author_meta('display_name', $author_id) . '</a></span></h4>'. get_the_author_meta( 'description', $author_id ) .'
+		</div>
+	';
+
+	$content .= '
+	<div class="yawabsocial">
+	';
+
+	$content .= add_social_link('twitter', $author_id, 'Twitter');
+	$content .= add_social_link('facebook', $author_id, 'Facebook');
+	$content .= add_social_link('instagram', $author_id, 'Instagram');
+	$content .= add_social_link('linkedin', $author_id, 'LinkedIn');
+	$content .= add_social_link('dribble', $author_id, 'Dribble');
+	$content .= add_social_link('github', $author_id, 'Github');
+	$content .= add_social_link('stack-overflow', $author_id, 'Stack Overflow');
+
+	$content .= '
+	</div>
+	</div>
+	';
+
+	return $content;
+}
+
+function add_social_link($type, $author_id, $name) {
+	$result = '';
+
+	if( get_the_author_meta($type, $author_id ) ) {
+		$result = '<a href="' . esc_url( get_the_author_meta( $type, $author_id ) ) . '" target="_blank"><i class="fab fa-' . $type . '"></i> ' . $name . '</a> ';
+	}
+
+	return $result;
+}
+
 ?>

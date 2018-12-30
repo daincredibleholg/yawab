@@ -1,20 +1,20 @@
 === Plugin Name ===
-Contributors: madebyguerrilla
+Contributors: steinhsoftware
 Tags: author box, author info, author
 Requires at least: 3.0
-Tested up to: 4.9.9
+Tested up to: 5.0.2
 Stable tag: 2.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-This is a plugin that adds an author box to the end of your posts, showing off the authors name, description, website link and gravatar powered avatar.
+This is a plugin that adds one or more author boxes to the end of your posts, showing the authors name, description, website link and Gravatar powered avatar.
 It is based on the brilliant Guerrillas Author Box which was discontinued end of November 2018.
 
-A new feature added in version 2 is the support for the Co-Authors Plus Plugin and introduces supported for multiple authors this way.
+A new feature added in version 2 is multiple authors support via the Co-Authors Plus Plugin.
 
 == Description ==
 
-This is a plugin that adds an author box to the end of your posts, showing off the authors name, description, website link and gravatar powered avatar.
+This is a plugin that adds one or more author boxes to the end of your posts, showing the authors name, description, website link and gravatar powered avatar.
 
 As of version 2.0 the following input boxes were removed:
 
@@ -23,6 +23,7 @@ As of version 2.0 the following input boxes were removed:
 As of version 2.0 the following input boses were added:
 
 * Instagram
+* Stack Overflow
 
 As of version 1.3 the following input boxes were removed:
 

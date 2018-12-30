@@ -1,0 +1,20 @@
+= Yet Another WordPress Author Box
+
+This is a fork of the fabulous https://wordpress.org/plugins/guerrillas-author-box[Guerrilla’s Author Box] that will provide support for multiple authors via the
+great https://wordpress.org/plugins/co-authors-plus[Co Authors Plus] plugin.
+
+It was tested with WordPress 4.9.9 up to 5.0.2 and was initiated as we needed something for https://www.javaadvent.com[Java Advent].
+
+== Prerequisites
+- Wordpress version 4.9.9 or above (should work with prior versions, but I didn't test it)
+- Co Authors Plus plugin installed and activated, if you want multiple author support
+
+== Features
+* Adds one box per author to the end of each post
+* Adds the following social media URL fields:
+** Twitter
+** Facebook
+** LinkedIn
+** GitHub
+** Stack Overflow
+** Dribble

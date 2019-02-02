@@ -3,7 +3,7 @@
 Plugin Name: Yet Another WordPress Author Box
 Plugin URI: https://github.com/daincredibleholg/yawab
 Description: This is a plugin that adds one or more author boxes to the end of your WordPress posts.
-Version: 1.0
+Version: 1.0.1
 Author: Holger Steinhauer
 Author URI: https://steinhauer.software
 */
@@ -26,7 +26,8 @@ Author URI: https://steinhauer.software
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 /* This code adds new profile fields to the user profile editor */
-function modify_contact_methods($profile_fields) {
+function yawab_modify_contact_methods($profile_fields)
+{
 
 	// Add new fields
 	$profile_fields['twitter'] = 'Twitter URL';
@@ -45,13 +46,14 @@ function modify_contact_methods($profile_fields) {
 
 	return $profile_fields;
 }
-add_filter('user_contactmethods', 'modify_contact_methods');
+
+add_filter('user_contactmethods', 'yawab_modify_contact_methods');
 
 /* This code adds the author box stylesheet to your website */
 function yawab_author_box_style()
 {
 	// Register the style like this for a plugin:
-	wp_register_style( 'yawab-author-box', plugins_url( '/style.css', __FILE__ ), array(), '20181228', 'all' );
+    wp_register_style('yawab-author-box', plugins_url('/style.css', __FILE__), array(), '20190128', 'all');
 	// For either a plugin or a theme, you can then enqueue the style:
 	wp_enqueue_style( 'yawab-author-box' );
 }
@@ -59,21 +61,23 @@ add_action( 'wp_enqueue_scripts', 'yawab_author_box_style' );
 
 
 /* This code adds the fontawesome css file to the footer of your website */
-function fontawesome_authorbox() { ?>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" />
-<?php } 
-add_action( 'wp_footer', 'fontawesome_authorbox' );
+function yawab_fontawesome_authorbox()
+{
+    wp_enqueue_style('yawab-font-awesome', 'https://use.fontawesome.com/releases/v5.7.1/css/all.css', array(), '5.6.1');
+}
+
+add_action('wp_footer', 'yawab_fontawesome_authorbox');
 
 /* This code adds the author box to the end of your single posts */
 add_filter ('the_content', 'yawab_add_post_content', 0);
 function yawab_add_post_content($content) {
 	if (is_single()) { 
 		if (! function_exists('coauthors')) {
-			$content .= author_box(get_the_author_meta('ID'));
+            $content .= yawab_author_box(get_the_author_meta('ID'));
 		} else {
 			$co_authors = get_coauthors();
 			foreach ($co_authors as $current_co_author) {
-				$content .= author_box($current_co_author->ID);
+                $content .= yawab_author_box($current_co_author->ID);
 			}
 		}
 	}
@@ -82,11 +86,13 @@ function yawab_add_post_content($content) {
 
 /**
  * Adds a author box for the author with the ID $author_id to the end of $content
- * 
+ *
  * @param int $author_id Author's ID
+ * @return string Rendered author box for auther $author_id
  */
-function author_box($author_id) {
-	$content .= '
+function yawab_author_box($author_id)
+{
+    $content = '
 		<div class="yawabwrap">
 		<div class="yawabgravatar">
 			'. get_avatar( $author_id, '80' ) .'
@@ -94,29 +100,27 @@ function author_box($author_id) {
 		<div class="yawabtext">
 			<h4>Author: <span><a href="'. get_author_posts_url( $author_id ) .'">' . get_the_author_meta('display_name', $author_id) . '</a></span></h4>'. get_the_author_meta( 'description', $author_id ) .'
 		</div>
+	    <div class="yawabsocial">
 	';
 
-	$content .= '
-	<div class="yawabsocial">
-	';
-
-	$content .= add_social_link('twitter', $author_id, 'Twitter');
-	$content .= add_social_link('facebook', $author_id, 'Facebook');
-	$content .= add_social_link('instagram', $author_id, 'Instagram');
-	$content .= add_social_link('linkedin', $author_id, 'LinkedIn');
-	$content .= add_social_link('dribble', $author_id, 'Dribble');
-	$content .= add_social_link('github', $author_id, 'Github');
-	$content .= add_social_link('stack-overflow', $author_id, 'Stack Overflow');
+    $content .= yawab_add_social_link('twitter', $author_id, 'Twitter');
+    $content .= yawab_add_social_link('facebook', $author_id, 'Facebook');
+    $content .= yawab_add_social_link('instagram', $author_id, 'Instagram');
+    $content .= yawab_add_social_link('linkedin', $author_id, 'LinkedIn');
+    $content .= yawab_add_social_link('dribble', $author_id, 'Dribble');
+    $content .= yawab_add_social_link('github', $author_id, 'Github');
+    $content .= yawab_add_social_link('stack-overflow', $author_id, 'Stack Overflow');
 
 	$content .= '
-	</div>
+	    </div>
 	</div>
 	';
 
 	return $content;
 }
 
-function add_social_link($type, $author_id, $name) {
+function yawab_add_social_link($type, $author_id, $name)
+{
 	$result = '';
 
 	if( get_the_author_meta($type, $author_id ) ) {

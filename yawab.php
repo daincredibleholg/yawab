@@ -129,5 +129,3 @@ function yawab_add_social_link($type, $author_id, $name)
 
 	return $result;
 }
-
-?>
